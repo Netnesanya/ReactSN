@@ -1,0 +1,14 @@
+
+
+
+.nav {
+    grid-area: n;
+    background-color:rgb(34, 35, 36);
+    padding: 20px;
+  }
+
+.navbar_item {
+    color: rgb(202, 201, 201)
+}
+
+

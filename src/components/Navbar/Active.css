@@ -1,0 +1,10 @@
+.navlink a {
+color: white;
+text-decoration: none;
+}
+
+
+
+.navlink a.active {
+    color: rgb(231, 182, 190);
+}

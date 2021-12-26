@@ -1,0 +1,14 @@
+.userPhoto img{
+    width: 90px;
+    border-radius: 60px;
+}
+
+
+.userItem {
+    color: rgb(202, 201, 201)
+}
+
+.selectedPage {
+    font-weight: bold;
+    font-size: 120%;
+}
