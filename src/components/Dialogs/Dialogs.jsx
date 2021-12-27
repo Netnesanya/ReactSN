@@ -4,6 +4,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React  from 'react';
 import NewMessageContainer from "./Message/NewMessage/NewMessageContainer";
+import Redirect from "react-router/es/Redirect";
 
 
 let Dialogs = (props) => {
@@ -15,15 +16,13 @@ let Dialogs = (props) => {
     <Message message={message.message} key ={message.id} id={message.id}  />
   ));
 
+  if (!props.isAuth) return <Redirect to={'/login'} />
+
   return (
     <div className={d.dialogs}>
       <div className={d.dialogsItems}>{dialogsElements}</div>
       <div>{messageElements}</div>
-      <NewMessageContainer
-      // dispatch={props.dispatch}
-      //   className={d.messages}
-      //   newMessageText={props.state.dialogsPage.newMessageText}
-      />
+      <NewMessageContainer/>
     </div>
   );
 };

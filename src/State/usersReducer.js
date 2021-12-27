@@ -1,4 +1,4 @@
-import {followAPI, getUsers} from "../API/api";
+import {followAPI, getUsersAPI} from "../API/api";
 
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = "UNFOLLOW"
@@ -86,7 +86,7 @@ export let getUsersThunkCreator = (currentPage, pageSize) => {
     return (dispatch) => {
     dispatch(toggleFetching(true))
 
-    getUsers(currentPage, pageSize).then(data => {
+    getUsersAPI(currentPage, pageSize).then(data => {
         dispatch(setTotalUsersCount(data.totalCount))
         dispatch(setUsers(data.items))
         dispatch(toggleFetching(false))
