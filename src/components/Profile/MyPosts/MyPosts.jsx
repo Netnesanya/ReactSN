@@ -36,11 +36,11 @@ const NewPost = (props) => {
     )}
 
 
-const MyPosts = (props) => {
+const MyPosts =React.memo ( props => {
 
 
     let postElements = props.postData.map((element) => (
-        <Post id={element.id} message={element.message} key ={element.id} likes={element.likes}/>));
+        <Post id={element.id} message={element.message} key ={element.id} likes={element.likes}/>)).reverse();
 
 
 
@@ -48,13 +48,13 @@ const MyPosts = (props) => {
         <div> {postElements} </div>
       <NewPost newPost={props.newPost} />
         </div>);
-};
+});
 
 export default MyPosts;
 
 
 
 
-;
+
 
 

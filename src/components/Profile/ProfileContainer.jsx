@@ -10,6 +10,7 @@ import {authAPI} from "../../API/api";
 
 
  class ProfileContainer extends React.Component{
+
      componentDidMount() {
 
          let userId = this.props.match.params.userId;
@@ -21,6 +22,7 @@ import {authAPI} from "../../API/api";
      }
 
      render() {
+
   return (
     <Profile {...this.props} profile={this.props.profile}
              status={ this.props.status} updateStatus = {this.props.updateStatus}/>
