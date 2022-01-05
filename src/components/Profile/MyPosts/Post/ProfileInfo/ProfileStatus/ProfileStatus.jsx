@@ -1,43 +1,50 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 
-class ProfileStatus extends React.Component {
+const ProfileStatus = (props) => {
 
+    let [editMode, setEditMode] = useState(false)
+    let enterEditMode = () =>{
+        setEditMode(true)
+    };
+    let leaveEditMode = () =>{
+        setEditMode(false)
+        props.updateStatus(status)
+    };
 
-    state = {
-        editMode: false,
-        status: this.props.status
+    let [status, setStatus] = useState(props.status)
+
+    useEffect( () => {
+        setStatus(props.status)
+    }, [props.status])
+
+   const onStatusChange = (e) => {
+        setStatus(e.currentTarget.value)
     }
-enterEditMode(){
-    this.setState({editMode: true})};
-leaveEditMode(){
-        this.setState({editMode: false})
-        this.props.updateStatus(this.state.status) }
-    handleFocus = (event) => event.target.select()
-    onStatusChange =(e) => {
-    this.setState(
-        {
-          status: e.currentTarget.value
-        })
-    }
 
-    render() {
+    return (
+        <div>
+            { !editMode &&
+                <div>
+                    <span
+                        onDoubleClick={enterEditMode}
+                    > {props.status} </span>
+                </div>
+            }
+            {editMode &&
+                <div>
+                    <input autoFocus={true}
+                           onBlur={leaveEditMode}
+                        onChange={onStatusChange}
+                           value={status}
+                        // onFocus={}
 
-        return (
-            <div>
-                {!this.state.editMode &&
-                    <div>
-                        <span onDoubleClick={this.enterEditMode.bind(this)}> {this.props.status}</span>
-                    </div>
-                }
-                {this.state.editMode &&
-                    <div>
-                        <input onChange={this.onStatusChange} autoFocus={true} onFocus={this.handleFocus} onBlur={this.leaveEditMode.bind(this)} value={this.state.status}/>
-                    </div>
-                }
-            </div>
-        )
-    }
+                    />
+                </div>
+            }
+        </div>
+    )
 }
+
 
 export default ProfileStatus;

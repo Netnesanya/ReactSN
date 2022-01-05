@@ -30,7 +30,7 @@ let initialState = {
             img: "https://i1.sndcdn.com/avatars-000736438537-zvc9fi-t500x500.jpg",
         },
     ],
-    newMessageText: "zhopa",
+
 }
 
 export const dialogsReducer = (state = initialState, action) =>  {
@@ -38,15 +38,15 @@ export const dialogsReducer = (state = initialState, action) =>  {
         default:
             return state;
             case sendNewMessage:
-             let  message= state.newMessageText;
+             //let  message= action.newMessageText;
 
                 return {...state,
-                    newMessageText: '',
-                    messagesData:[...state.messagesData, {id: state.messagesData.length + 1, message: message}]
+
+                    messagesData:[...state.messagesData, {id: state.messagesData.length + 1, message : action.newMessageBody}]
                 };
 
-        case updateMessageText:
-            return { ...state, newMessageText: action.newMessageText}
+        // case updateMessageText:
+        //     return { ...state, newMessageText: action.newMessageText}
     }
 }
 
@@ -55,5 +55,4 @@ export const dialogsReducer = (state = initialState, action) =>  {
         newMessageText: newText,
       });
       
-      export let sendNewMessageActionCreator = () => ({ type: "SEND-NEW-MESSAGE" });
-      
+      export let sendNewMessageActionCreator = (newMessageBody) => ({ type: sendNewMessage, newMessageBody });

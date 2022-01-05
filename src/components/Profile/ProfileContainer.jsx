@@ -5,6 +5,7 @@ import {getUserProfile, updateStatus, getStatus } from "../../State/profileReduc
 import {withRouter} from "react-router-dom";
 import withAuthRedirect from "../../HOC/WithAuthRedirect";
 import {compose} from "redux";
+import {authAPI} from "../../API/api";
 
 
 
@@ -13,7 +14,7 @@ import {compose} from "redux";
 
          let userId = this.props.match.params.userId;
          if(!userId){
-             userId =21464;
+             userId = this.props.authorizedUserId;
          }
          this.props.getUserProfile(userId)
          this.props.getStatus(userId)
@@ -21,7 +22,8 @@ import {compose} from "redux";
 
      render() {
   return (
-    <Profile {...this.props} profile={this.props.profile} status={ this.props.status} updateStatus = {this.props.updateStatus}/>
+    <Profile {...this.props} profile={this.props.profile}
+             status={ this.props.status} updateStatus = {this.props.updateStatus}/>
   );
 }}
 
@@ -33,6 +35,7 @@ let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth,
     status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
 });
 
 export default compose(

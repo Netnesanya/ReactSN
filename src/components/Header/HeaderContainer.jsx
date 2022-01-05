@@ -1,19 +1,12 @@
 import h from "./Header.module.css"
 import React  from 'react';
 import Header from "./Header";
-import axios from "axios";
-
 import {connect} from "react-redux";
-import {getAuthUserData, setUserData} from "../../State/authReducer";
-import {authAPI} from "../../API/api";
+import { logout} from "../../State/authReducer";
+
 
  class HeaderContainer extends React.Component {
-componentDidMount() {
 
-
-    this.props.getAuthUserData()
-
-}
 render() {
     return (
     <div className = {h.header}>
@@ -32,4 +25,4 @@ let mapStateToProps= (state) => {
 }
 
 
-export default connect(mapStateToProps, {getAuthUserData})(HeaderContainer)
+export default connect(mapStateToProps, { logout})(HeaderContainer)
