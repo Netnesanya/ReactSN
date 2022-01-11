@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
 import LoginPage from './components/Login/LoginPage'
-import {Route} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import Feed from "./components/Feed_etc/Feed";
 import Music from "./components/Feed_etc/Music";
 import Settings from "./components/Feed_etc/Settings";
@@ -10,9 +10,10 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {initializeApp} from "./State/appReducer";
 import Preloader from "./components/common/Preloader";
+import store from "./State/ReduxStore";
 
 
 class App extends React.Component {
@@ -57,4 +58,18 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
 
-export default connect(mapStateToProps, {initializeApp})(App)
+const AppContainer = connect(mapStateToProps, {initializeApp})(App)
+
+let MainApp = () => {
+    return (
+    <BrowserRouter>
+        <React.StrictMode>
+            <Provider store={store}>
+                learn react
+                <AppContainer/>
+
+            </Provider>
+        </React.StrictMode>
+    </BrowserRouter>
+    )}
+export default MainApp

@@ -1,5 +1,5 @@
-const updateMessageText ="UPDATE-NEW-MESSAGE-TEXT"
-const sendNewMessage ="SEND-NEW-MESSAGE"
+const updateMessageText ="UPDATE-NEW-MESSAGE-TEXT_DIALOGS_REDUCER"
+const sendNewMessage ="SEND-NEW-MESSAGE_DIALOGS_REDUCER"
 
 let initialState = {
     messagesData: [
