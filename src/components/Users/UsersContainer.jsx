@@ -1,11 +1,9 @@
-//import Users from "./Users";
-//import Users from "./UsersAPIComponent.jsx";
 import Preloader from "../common/Preloader";
 import {connect} from "react-redux";
 import {follow,setUsers,unfollow,setCurrentPage,setTotalUsersCount,
     toggleFetching, toggleFollowingInProgress, getUsersThunkCreator,
 } from "../../State/usersReducer";
-import React from "react";
+import React, {useState} from "react";
 import Users from "./Users";
 import { followAPI } from "../../API/api";
 import {compose} from "redux";
@@ -17,6 +15,8 @@ import {
     getTotalUsersCount,
     getUsers
 } from "../../State/usersSelectors";
+import {setStatus} from "../../State/profileReducer";
+import styles from './users.module.css'
 
 class UsersContainer extends React.Component {
 
@@ -28,10 +28,12 @@ class UsersContainer extends React.Component {
 
         return <>
             {this.props.isFetching ? <Preloader/> : null}
-            <Users totalUsersCount={this.props.totalUsersCount}
+            <Users
+                totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
                    followAPI ={followAPI}
                    followingInProgress={this.props.followingInProgress}
+                   getUsers = {this.props.getUsers}
                    onPageChanged={(pageNumber) => { this.props.getUsers(pageNumber, this.props.pageSize)}}
                    currentPage={this.props.currentPage}
                    users={this.props.users}
@@ -50,26 +52,9 @@ let mapStateToProps = (state) => {
         followingInProgress: getFollowingInProgress(state),
     }
 }
-// let mapStateToProps = (state) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
-
 
 export default compose(
-
     connect(
-        //withAuthRedirect,
     mapStateToProps, {follow, unfollow, setUsers, setCurrentPage,
     setTotalUsersCount, toggleFetching, toggleFollowingInProgress, getUsers: getUsersThunkCreator }))(UsersContainer)
 
- // connect(
- //    withAuthRedirect,
- //    mapStateToProps, {follow, unfollow, setUsers, setCurrentPage,
- //    setTotalUsersCount, toggleFetching, toggleFollowingInProgress, getUsers: getUsersThunkCreator })(UsersContainer);

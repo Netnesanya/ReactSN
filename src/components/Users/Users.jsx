@@ -1,30 +1,36 @@
 import styles from './users.module.css'
 import React from "react";
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
-import {toggleFollowingInProgress} from "../../State/usersReducer";
+import Paginator from "../Paginator/Paginator";
+import {followAPI} from "../../API/api";
 
 let Users = (props) => {
 
     window.props = props
-
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
-    for (let i = 0; i < pagesCount; i++) {
-        pages.push(i + 1);
-    }
+    //
+    // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    // let pages = [];
+    // for (let i = 0; i < pagesCount; i++) {
+    //     pages.push(i + 1);
+    // }
     return (
 
         <div className={styles.userItem}>
-            <div>
-                {pages.map(p => {
-                    return <button onClick={() => {
-                        props.onPageChanged(p)
-                    }}>
-                        <span className={props.currentPage === p && styles.selectedPage}>{p}</span></button>
-                })}
+            <Paginator
+                totalItemsCount={props.totalUsersCount}
+                pageSize={props.pageSize}
+                currentPage={props.currentPage}
+                onPageChange={(pageNumber) => { props.getUsers(pageNumber, props.pageSize)}}
+            />/>
+            {/*<div>*/}
+            {/*    {pages.map(p => {*/}
+            {/*        return <button onClick={() => {*/}
+            {/*            props.onPageChanged(p)*/}
+            {/*        }}>*/}
+            {/*            <span className={props.currentPage === p && styles.selectedPage}>{p}</span></button>*/}
+            {/*    })}*/}
 
-            </div>
+            {/*</div>*/}
             {props.users.map(u => <div key={u.id}>
             <span>
                 <div className={styles.userPhoto}>
@@ -38,9 +44,10 @@ let Users = (props) => {
                         : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() =>props.unfollow(u.id)}>Follow</button>}
 
                 </div>
+
             </span>
                 <span><div>{u.name}</div></span>
-                <span><div>u.location</div>
+                <span><div>{u.location}</div>
                 <div> </div></span>
             </div>)}
         </div>)
