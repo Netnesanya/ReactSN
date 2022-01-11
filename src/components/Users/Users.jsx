@@ -7,12 +7,6 @@ import {followAPI} from "../../API/api";
 let Users = (props) => {
 
     window.props = props
-    //
-    // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    // let pages = [];
-    // for (let i = 0; i < pagesCount; i++) {
-    //     pages.push(i + 1);
-    // }
     return (
 
         <div className={styles.userItem}>
@@ -22,15 +16,6 @@ let Users = (props) => {
                 currentPage={props.currentPage}
                 onPageChange={(pageNumber) => { props.getUsers(pageNumber, props.pageSize)}}
             />/>
-            {/*<div>*/}
-            {/*    {pages.map(p => {*/}
-            {/*        return <button onClick={() => {*/}
-            {/*            props.onPageChanged(p)*/}
-            {/*        }}>*/}
-            {/*            <span className={props.currentPage === p && styles.selectedPage}>{p}</span></button>*/}
-            {/*    })}*/}
-
-            {/*</div>*/}
             {props.users.map(u => <div key={u.id}>
             <span>
                 <div className={styles.userPhoto}>
