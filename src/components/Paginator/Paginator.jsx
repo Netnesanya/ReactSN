@@ -15,15 +15,15 @@ const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChange, portio
 
 
 
-    return <div className={''}>
+    return <div >
         {portionNumber > 1 &&
             <button onClick={() => {setPortionNumber(portionNumber - 1)}}>PREV</button>}
         {pages
             .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
             .map((p) => {
-                return <button className={styles.selectedPage} key={p} onClick={(e) => {
+                return <span className={styles.selectedPage} key={p} onClick={(e) => {
                     onPageChange(p);
-                }}>{p}</button>
+                }}>{p}</span>
             })}
         {portionCount > portionNumber &&
             <button onClick={() => {setPortionNumber(portionNumber + 1)}}>NEXT</button>}
