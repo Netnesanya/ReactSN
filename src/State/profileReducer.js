@@ -5,6 +5,7 @@ const ADD_POST = "ADD_POST_PROFILE_REDUCER"
 const SET_USER_PROFILE = "SET_USER_PROFILE_PROFILE_REDUCER"
 const SET_STATUS = 'SET_STATUS_PROFILE_REDUCER'
 const DELETE_POST = 'DELETE_POST_PROFILE_REDUCER'
+const SAVE_PROFILE = 'SAVE_PROFILE'
 
 let initialState = {
     postData: [{id: 1, message: "post Number 1", likes: 2}, {id: 2, message: "post Number 2", likes: 12}, {
@@ -52,6 +53,7 @@ export let setUserProfile = (profile) => ({type: SET_USER_PROFILE,profile } )
 export let setStatus = (status) => ({type: SET_STATUS, status})
 export let deletePost = (postId) => ({type: DELETE_POST, postId})
 export let savePhotoSuccess = (file) => ({type: SAVE_PHOTO, file})
+export let saveProfileSuccess = (profileData) => ({type: SAVE_PROFILE, profileData})
 
 export let getUserProfile = (userId) =>  (async(dispatch) => {
   let response = await  profileAPI.getProfile(userId)
@@ -59,6 +61,15 @@ export let getUserProfile = (userId) =>  (async(dispatch) => {
             dispatch(setUserProfile(response.data))
 
 } )
+export let saveProfile = (profileData) => async(dispatch) => {
+    debugger
+    let response = await profileAPI.saveProfile(profileData)
+    debugger
+    if (response.data.resultCode === 0) {
+            console.log(response.data)
+           dispatch(saveProfileSuccess(response.data.data))
+}}
+
 export let savePhoto = (file) =>  (async(dispatch) => {
   let response = await  profileAPI.savePhoto(file)
 

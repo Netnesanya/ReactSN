@@ -2,6 +2,7 @@ import styles from './users.module.css'
 import React from "react";
 import {NavLink} from "react-router-dom";
 import Paginator from "../Paginator/Paginator";
+
 import {followAPI} from "../../API/api";
 
 let Users = (props) => {
@@ -15,7 +16,7 @@ let Users = (props) => {
                 pageSize={props.pageSize}
                 currentPage={props.currentPage}
                 onPageChange={(pageNumber) => { props.getUsers(pageNumber, props.pageSize)}}
-            />/>
+            />
             {props.users.map(u => <div key={u.id}>
             <span>
                 <div className={styles.userPhoto}>

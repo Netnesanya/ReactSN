@@ -8,13 +8,13 @@ let store = {
     store._rerenderEntireTree = observer;
   },
   _state: {
-    // usersPage: {
-    //   users:
-    //       [{id: 1, name: "Naruto", followers: 0, location: 'RU', followed: false, img: "https://vistapointe.net/images/naruto-4.jpg",},
-    //         {id: 2, name: "Kakashi", followers: 0, location:  'RU', followed: false, img: "https://pbs.twimg.com/profile_images/912318190264438789/-yqpL-1S_400x400.jpg",},
-    //         {id: 3, name: "Tsunade", followers: 0, location: 'RU', followed: false, img: "https://qph.fs.quoracdn.net/main-qimg-edd5748057a8ba0e37ac30fc4af21d2b-lq",},
-    //         {id: 4, name: "Sakura", followers: 0, location:  'RU', followed: false, img: "https://i1.sndcdn.com/avatars-000736438537-zvc9fi-t500x500.jpg",}, ],
-    // },
+    usersPage: {
+      users:
+          [{id: 1, name: "Naruto", followers: 0, location: 'RU', followed: false, img: "https://vistapointe.net/images/naruto-4.jpg",},
+            {id: 2, name: "Kakashi", followers: 0, location:  'RU', followed: false, img: "https://pbs.twimg.com/profile_images/912318190264438789/-yqpL-1S_400x400.jpg",},
+            {id: 3, name: "Tsunade", followers: 0, location: 'RU', followed: false, img: "https://qph.fs.quoracdn.net/main-qimg-edd5748057a8ba0e37ac30fc4af21d2b-lq",},
+            {id: 4, name: "Sakura", followers: 0, location:  'RU', followed: false, img: "https://i1.sndcdn.com/avatars-000736438537-zvc9fi-t500x500.jpg",}, ],
+    },
     profilePage: {
       postData: [
         { id: 1, message: "post Number 1", likes: 2 },
