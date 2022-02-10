@@ -21,7 +21,6 @@ export const authAPI = {
 }
 export const profileAPI = {
     getProfile(userId) {
-
    return instance.get(`profile/${userId}`)
 },
     getStatus(userId) {
@@ -39,6 +38,7 @@ export const profileAPI = {
     },
     saveProfile(profileData) {
         return instance.put(`profile/`, profileData)
+
     }
 };
 export const getUsersAPI = (currentPage, pageSize) => {

@@ -83,7 +83,7 @@ export let setUsers = (users) => ({type: SET_USERS, users});
 export let unfollowSuccess = (id) => ({type: UNFOLLOW, id});
 export let toggleFollowingInProgress = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_IN_PROGRESS, isFetching, userId })
 export let getUsersThunkCreator = (currentPage, pageSize) => {
-    debugger;
+
     return (dispatch) => {
         console.log(dispatch)
     dispatch(toggleFetching(true))

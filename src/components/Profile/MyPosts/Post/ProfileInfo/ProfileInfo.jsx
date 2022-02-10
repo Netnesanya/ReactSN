@@ -3,7 +3,7 @@ import Preloader from "../../../../common/Preloader";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import p from './Profile.module.css'
 import {savePhoto} from "../../../../../State/profileReducer";
-import  {ReduxProfileDataForm} from "./ProfileDataForm";
+import {ReduxProfileDataForm} from "./ProfileDataForm";
 
 
 const ProfileInfo = ({profile, isOwner, status, updateStatus, saveProfile}) => {
@@ -17,20 +17,27 @@ const ProfileInfo = ({profile, isOwner, status, updateStatus, saveProfile}) => {
         }
     }
     let onSubmit = (formData) => {
-        debugger;
-        saveProfile(formData)
+        saveProfile(formData).then(
+            () => {
+                setEditMode(false)
+            }
+        )
+
     }
     return (
         <div className={p.infoText}>
             <ProfileStatus status={status} updateStatus={updateStatus}/>
             <img alt='on vacation'
-                 src={profile.photos.large != null ? profile.photos.large : 'https://variety.com/wp-content/uploads/2021/07/Rick-Astley-Never-Gonna-Give-You-Up.png?w=1024'}/>
+                 src={profile.photos.large !== null ? profile.photos.large : 'https://variety.com/wp-content/uploads/2021/07/Rick-Astley-Never-Gonna-Give-You-Up.png?w=1024'}/>
             {isOwner && <input type={'file'} onChange={profilePictureSelected}/>}
-            {editMode ? <ReduxProfileDataForm profile={profile} onSubmit={onSubmit} leaveEditMode={ () =>setEditMode(false)}/> :
+            {editMode ? <ReduxProfileDataForm profile={profile} initialValues={profile} onSubmit={onSubmit}
+                                              leaveEditMode={() => setEditMode(false)}/>
+                :
                 <ProfileData profile={profile} isOwner={isOwner} enableEditMode={() => {
                     setEditMode(true)
-                }} />}
-            <ProfileData profile={profile}/>
+                }}/>
+            }
+            {/*<ProfileData profile={profile}/>*/}
         </div>
 
     )
@@ -42,7 +49,7 @@ const ProfileData = ({profile, isOwner, enableEditMode}) => {
                 <button onClick={enableEditMode}>Edit</button>
             </div>}
             <h3> About me: {profile.aboutMe}</h3>
-            <b>  {profile.fullName}</b>
+            <b> My name: {profile.fullName}</b>
         </div>
         <div>
             <b> Looking for a job {profile.lookingForAJob ? ": yes" : ': no'}</b>
@@ -57,9 +64,6 @@ const ProfileData = ({profile, isOwner, enableEditMode}) => {
         </div>
     </div>
 }
-
-
-
 
 
 const Contact = ({contactTitle, contactValue}) => {
