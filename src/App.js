@@ -5,7 +5,7 @@ import Feed from "./components/Feed_etc/Feed";
 import Music from "./components/Feed_etc/Music";
 import Settings from "./components/Feed_etc/Settings";
 import React, {Suspense} from "react";
-import UsersContainer from "./components/Users/UsersContainer";
+// import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {connect, Provider} from "react-redux";
 import {initializeApp} from "./State/appReducer";
@@ -17,12 +17,20 @@ import store from "./State/ReduxStore";
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const LoginPage = React.lazy(() => import('./components/Login/LoginPage'));
-
+const UsersContainer = React.lazy(() => import("./components/Users/UsersContainer"))
 
 
 class App extends React.Component {
+    catchAllUnhandledErrors = (promiseRejectionEvent) => {
+        console.log(promiseRejectionEvent.reason);
+        alert("Something went wrong");
+}
+
     componentDidMount() {
         this.props.initializeApp()
+        window.addEventListener("unhandledrejection",this.catchAllUnhandledErrors  )}
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
     }
 
     render() {
