@@ -24,9 +24,6 @@ const Navbar = () => {
       <div className={n.navbar_item} class="navlink">
         <NavLink to="/settings">Settings</NavLink>
       </div>
-      {/* <div className ={n.navbar_item}>
-      <a >Profile</a> 
-    </div>*/}
     </nav>
   );
 };
