@@ -2,7 +2,7 @@ import Preloader from "../common/Preloader";
 import {connect} from "react-redux";
 import {follow,setUsers,unfollow,setCurrentPage,setTotalUsersCount,
     toggleFetching, toggleFollowingInProgress, getUsersThunkCreator,
-} from "../../State/usersReducer";
+} from "../../Redux/usersReducer";
 import React, {useState} from "react";
 import Users from "./Users";
 import { followAPI } from "../../API/api";
@@ -14,8 +14,8 @@ import {
     getPageSize,
     getTotalUsersCount,
     getUsers
-} from "../../State/usersSelectors";
-import {setStatus} from "../../State/profileReducer";
+} from "../../Redux/usersSelectors";
+import {setStatus} from "../../Redux/profileReducer";
 import styles from './users.module.css'
 
 class UsersContainer extends React.Component {

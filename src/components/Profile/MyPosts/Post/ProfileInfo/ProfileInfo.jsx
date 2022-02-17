@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Preloader from "../../../../common/Preloader";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import p from "./Profile.module.css";
-import { savePhoto } from "../../../../../State/profileReducer";
+import { savePhoto } from "../../../../../Redux/profileReducer";
 import { ReduxProfileDataForm } from "./ProfileDataForm";
 
 const ProfileInfo = ({

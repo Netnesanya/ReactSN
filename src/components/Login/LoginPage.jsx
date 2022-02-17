@@ -4,10 +4,11 @@ import {
   required,
 } from "./../../tools/validators/validators";
 import { Input } from "../common/formsControl/FormsControl";
-import { loginVerification } from "../../State/authReducer";
+import { loginVerification } from "../../Redux/authReducer";
 import { connect } from "react-redux";
 import { Route } from "react-router";
 import style from "../common/formsControl/FormsControl.module.css";
+import Redirect from "react-router/es/Redirect";
 //import {ReCAPTCHA} from "react-google-recaptcha";
 
 const LoginForm = (props) => {
@@ -60,11 +61,11 @@ const LoginForm = (props) => {
 const ReduxLoginForm = reduxForm({ form: "login" })(LoginForm);
 
 const LoginPage = (props) => {
-  // if (props.isAuth) {
-  //   console.log("authenticated");
-  //
-  //   return <Route path='profile' render={() => <Redirect to={"/profile"}/> }  />;
-  // }
+  if (props.isAuth) {
+    console.log("authenticated");
+
+    return <Route path='profile' render={() => <Redirect to={"/profile"}/> }  />;
+  }
   const onSubmit = (formData) => {
     props.loginVerification(
       formData.email,

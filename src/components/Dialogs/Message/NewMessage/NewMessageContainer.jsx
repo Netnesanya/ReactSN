@@ -1,5 +1,5 @@
 import {  sendNewMessageActionCreator,
-} from "../../../../State/dialogsReducer";
+} from "../../../../Redux/dialogsReducer";
 import NewMessage from "./NewMessage";
 import {connect} from "react-redux";
 

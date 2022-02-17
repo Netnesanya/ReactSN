@@ -7,12 +7,15 @@ import {
   getStatus,
   savePhoto,
   saveProfile,
-} from "../../State/profileReducer";
-import {useLocation, useMatch, useParams} from "react-router-dom";
-//import withAuthRedirect from "../../HOC/WithAuthRedirect";
+} from "../../Redux/profileReducer";
+import {withRouter} from "react-router-dom";
+import withAuthRedirect from "../../HOC/WithAuthRedirect";
 import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
+
+
+
   refreshProfile() {
     let userId = this.props.match.params.userId;
     if (!userId) {
@@ -23,6 +26,7 @@ class ProfileContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
     this.refreshProfile();
   }
 
@@ -32,6 +36,7 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
+
     return (
       <Profile
         {...this.props}
@@ -51,15 +56,6 @@ let mapStateToProps = (state) => ({
   status: state.profilePage.status,
   authorizedUserId: state.auth.userId,
 });
-function withRouter (Child) {
-  return function withRouter (props) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const location = useLocation();
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-   let { userId } = useParams()
-    return <Child {...props} param={useParams} location={location} />;
-  }
-}
 
 export default compose(
   connect(mapStateToProps, {
@@ -69,7 +65,7 @@ export default compose(
     savePhoto,
     saveProfile,
   }),
-  withRouter,
-  //withAuthRedirect
+    withRouter,
+  withAuthRedirect
 )(ProfileContainer);
 
